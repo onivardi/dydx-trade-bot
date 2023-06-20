@@ -1,6 +1,6 @@
 from constants import ABORT_ALL_POSITIONS
-from func_connections import connect_dydx
-from func_private import abort_all_positions
+from connections import connect_dydx
+from private import abort_all_positions
 
 if __name__ == "__main__":
     
