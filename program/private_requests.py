@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta
-import pprint
 import time
 
-from program.utils import format_number
+from utils import format_number
 
 # Place market order
 def place_market_order(client, market, side, size, price, reduce_only):

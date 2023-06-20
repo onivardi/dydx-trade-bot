@@ -27,7 +27,7 @@ def format_time(timestamp):
 def get_ISO_times():
 
     # Get timeStamps
-    date_start_0 = datetime.now()
+    date_start_0 = datetime.datetime.now()
     date_start_1 = date_start_0 - datetime.timedelta(hours=100)
     date_start_2 = date_start_1 - datetime.timedelta(hours=100)
     date_start_3 = date_start_2 - datetime.timedelta(hours=100)
