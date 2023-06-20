@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 import pprint
 import time
 
+from program.utils import format_number
+
 # Place market order
 def place_market_order(client, market, side, size, price, reduce_only):
     # Get Position
@@ -21,7 +23,10 @@ def place_market_order(client, market, side, size, price, reduce_only):
         post_only=False,
         size=size,
         price=price,
-        reduce_only=reduce_only
+        limit_fee='0.015',
+        expiration_epoch_seconds=expiration.timestamp(),
+        time_in_force="FOK",
+        reduce_only=reduce_only,
     )
 
     # Return result
@@ -64,3 +69,22 @@ def abort_all_positions(client):
             accept_price = price * 1.7 if side == "BUY" else price * 0.3
             tick_size = markets["markets"][market]["tickSize"]
             accept_price = format_number(accept_price, tick_size)
+
+            # Place order to close
+            order = place_market_order(
+                client,
+                market,
+                side,
+                position["sumOpen"],
+                accept_price,
+                True
+                )
+            
+            # Append the result
+            close_orders.append(order)
+
+            # Protect API
+            time.sleep(0.2)
+        
+        # Return closed orders
+        return close_orders
