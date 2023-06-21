@@ -1,8 +1,14 @@
 {
     "cSpell.words": [
+        "astype",
+        "coint",
         "COINTEGRATED",
+        "Cointegration",
         "dydx",
+        "iloc",
         "nans",
+        "statsmodels",
+        "stattools",
         "timeframe"
     ]
 }
