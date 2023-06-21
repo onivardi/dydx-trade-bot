@@ -1,6 +1,7 @@
 from constants import ABORT_ALL_POSITIONS, FIND_COINTEGRATED
 from connections import connect_dydx
 from private_requests import abort_all_positions
+from cointegration import store_cointegration_results
 from public_requests import construct_market_prices
 
 if __name__ == "__main__":
@@ -31,4 +32,16 @@ if __name__ == "__main__":
             df_market_price = construct_market_prices(client)
         except Exception as e:
             print("Error, constructing market prices: ", e)
+            exit(1)
+
+        
+         # Store Cointegrated Pairs
+        try:
+            print("Storing Cointegrated pairs...")
+            stores_result = store_cointegration_results(df_market_price)
+            if stores_result != "saved":
+                print("Error, saving cointegrated pairs")
+                exit(1)
+        except Exception as e:
+            print("Error, saving cointegrated pairs: ", e)
             exit(1)
