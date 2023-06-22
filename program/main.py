@@ -1,7 +1,8 @@
-from constants import ABORT_ALL_POSITIONS, FIND_COINTEGRATED
+from constants import ABORT_ALL_POSITIONS, FIND_COINTEGRATED, PLACE_TRADERS
 from connections import connect_dydx
 from private_requests import abort_all_positions
 from cointegration import store_cointegration_results
+from entry_paris import open_positions
 from public_requests import construct_market_prices
 
 if __name__ == "__main__":
@@ -44,4 +45,16 @@ if __name__ == "__main__":
                 exit(1)
         except Exception as e:
             print("Error, saving cointegrated pairs: ", e)
+            exit(1)
+
+
+        
+
+    # Place trades for opening positions
+    if PLACE_TRADERS:
+        try:
+            print("Finding trading opportunities...")
+            open_positions(client)
+        except Exception as e:
+            print("Error, Trading pairs: ", e)
             exit(1)
