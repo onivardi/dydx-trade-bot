@@ -6,6 +6,7 @@
         "Cointegration",
         "dydx",
         "iloc",
+        "iterrows",
         "nans",
         "statsmodels",
         "stattools",

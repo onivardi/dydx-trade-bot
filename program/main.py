@@ -2,7 +2,7 @@ from constants import ABORT_ALL_POSITIONS, FIND_COINTEGRATED, PLACE_TRADERS
 from connections import connect_dydx
 from private_requests import abort_all_positions
 from cointegration import store_cointegration_results
-from entry_paris import open_positions
+from entry_pairs import open_positions
 from public_requests import construct_market_prices
 
 if __name__ == "__main__":
